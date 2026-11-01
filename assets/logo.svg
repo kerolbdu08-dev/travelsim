@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-label="TravelSim">
+  <!-- Globe -->
+  <circle cx="30" cy="34" r="20" fill="#2563EB"/>
+  <path d="M30 14 C20 24 20 44 30 54 M30 14 C40 24 40 44 30 54 M10 34 H50 M14 24 H46 M14 44 H46" stroke="#E0F2FE" stroke-width="2" fill="none"/>
+  <!-- Trajectoire autour du globe -->
+  <path d="M4 44 C14 60 52 58 60 30" stroke="#0F172A" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Avion -->
+  <path d="M44 14 L62 6 L58 10 L64 14 L60 15 L54 13 L48 20 L46 19 L50 12 Z" fill="#0F172A"/>
+  <!-- Nom et devise -->
+  <text x="74" y="36" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="700" fill="#0F172A">Travel<tspan fill="#2563EB">Sim</tspan></text>
+  <text x="76" y="54" font-family="Poppins, Arial, sans-serif" font-size="11" fill="#475569">Plan • Simulate • Explore</text>
+</svg>

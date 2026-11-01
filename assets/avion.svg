@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- Fuselage -->
+  <path d="M40 120 C120 100 260 70 350 52 C372 48 388 56 380 66 C370 78 330 90 300 98 L80 138 C60 142 34 132 40 120 Z" fill="#FFFFFF" stroke="#94A3B8" stroke-width="3"/>
+  <!-- Aile -->
+  <path d="M190 92 L120 170 L150 172 L250 100 Z" fill="#E2E8F0"/>
+  <!-- Dérive -->
+  <path d="M72 122 L48 70 L70 70 L104 116 Z" fill="#2563EB"/>
+  <!-- Hublots -->
+  <g fill="#94A3B8"><circle cx="300" cy="72" r="4"/><circle cx="282" cy="76" r="4"/><circle cx="264" cy="80" r="4"/><circle cx="246" cy="84" r="4"/><circle cx="228" cy="88" r="4"/></g>
+  <!-- Réacteur -->
+  <ellipse cx="200" cy="120" rx="22" ry="10" fill="#CBD5E1"/>
+</svg>

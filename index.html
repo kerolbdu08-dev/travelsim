@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelSim - Planificateur de budget de voyage</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <!-- Police Poppins (Google Fonts) et icônes (Font Awesome) : il faut Internet pour les charger -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+    <!-- ===== EN-TÊTE : logo + menu ===== -->
+    <header class="entete">
+        <div class="conteneur entete-contenu">
+            <a href="#accueil" class="logo">
+                <img src="assets/logo.svg" alt="TravelSim, Plan Simulate Explore">
+            </a>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#accueil" class="actif"><i class="fa-solid fa-house"></i> Accueil</a></li>
+                    <li><a href="#simulateur"><i class="fa-solid fa-plane"></i> Simulateur</a></li>
+                    <li><a href="#historique"><i class="fa-solid fa-clock-rotate-left"></i> Historique</a></li>
+                    <li><a href="#a-propos"><i class="fa-solid fa-circle-info"></i> À propos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== BANNIÈRE D'ACCUEIL ===== -->
+        <section id="accueil" class="hero">
+            <div class="conteneur hero-contenu">
+                <div class="hero-texte">
+                    <h1>Travel<span>Sim</span></h1>
+                    <p class="hero-sous-titre">Simulez le budget de votre prochain voyage en toute simplicité</p>
+                    <p>Indiquez votre destination, votre budget et la durée du séjour : TravelSim calcule votre budget par jour et le répartit entre hébergement, transport, nourriture et activités.</p>
+                    <a href="#simulateur" class="bouton">Commencer une simulation <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+                <img src="assets/avion.svg" alt="" class="hero-avion">
+            </div>
+        </section>
+
+        <!-- ===== FORMULAIRE (le JavaScript lit ces champs par leur id) ===== -->
+        <section id="simulateur" class="conteneur carte">
+            <div class="carte-entete">
+                <span class="pastille"><i class="fa-solid fa-plane"></i></span>
+                <div>
+                    <h2>Simulateur de voyage</h2>
+                    <p>Entrez vos informations pour calculer votre budget.</p>
+                </div>
+            </div>
+
+            <form id="form-voyage" novalidate>
+                <div class="champs">
+                    <div class="champ">
+                        <label for="destination">Destination</label>
+                        <div class="saisie">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <input type="text" id="destination" name="destination" placeholder="Ex : Paris">
+                        </div>
+                    </div>
+
+                    <div class="champ">
+                        <label for="date-depart">Date de départ</label>
+                        <div class="saisie">
+                            <i class="fa-regular fa-calendar"></i>
+                            <input type="date" id="date-depart" name="date-depart">
+                        </div>
+                    </div>
+
+                    <div class="champ">
+                        <label for="jours">Nombre de jours</label>
+                        <div class="saisie">
+                            <i class="fa-solid fa-sun"></i>
+                            <input type="number" id="jours" name="jours" min="1" placeholder="Ex : 5">
+                        </div>
+                    </div>
+
+                    <div class="champ">
+                        <label for="type-voyage">Type de voyage</label>
+                        <div class="saisie">
+                            <i class="fa-solid fa-suitcase"></i>
+                            <select id="type-voyage" name="type-voyage">
+                                <option value="aller-retour">Aller-retour</option>
+                                <option value="aller-simple">Aller simple</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="champ">
+                        <label for="budget">Budget total</label>
+                        <div class="saisie">
+                            <i class="fa-regular fa-credit-card"></i>
+                            <input type="number" id="budget" name="budget" min="0" placeholder="Ex : 1000">
+                        </div>
+                    </div>
+
+                    <div class="champ">
+                        <label for="devise">Devise</label>
+                        <div class="saisie">
+                            <i class="fa-solid fa-coins"></i>
+                            <select id="devise" name="devise">
+                                <option value="EUR">Euro (€)</option>
+                                <option value="USD">Dollar ($)</option>
+                                <option value="MAD">Dirham (MAD)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <label class="case" for="etudiant">
+                    <input type="checkbox" id="etudiant" name="etudiant">
+                    Je suis étudiant (remise de 10 %)
+                </label>
+
+                <!-- Message d'erreur : caché par défaut, le JavaScript ajoute la classe "visible" -->
+                <p id="message-erreur" class="erreur">Veuillez remplir tous les champs avec des valeurs valides.</p>
+
+                <button type="submit" class="bouton bouton-large">
+                    <i class="fa-solid fa-magnifying-glass"></i> Calculer le budget
+                </button>
+            </form>
+        </section>
+
+        <!-- ===== RÉSULTATS (valeurs d'exemple, remplacées par le JavaScript) ===== -->
+        <section id="resultats" class="conteneur carte">
+            <h2 class="titre-section"><i class="fa-solid fa-chart-column"></i> Résultats de simulation</h2>
+
+            <div class="resultat-principal">
+                <div class="resultat-image"><i class="fa-solid fa-earth-europe"></i></div>
+                <div class="resultat-infos">
+                    <h3 id="res-destination">Paris</h3>
+                    <p id="res-details">5 jours · Aller-retour · Départ le 15/04/2026</p>
+                </div>
+                <div class="resultat-prix">
+                    <span class="etiquette">Total à prévoir</span>
+                    <span id="res-total" class="prix">900 €</span>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="etiquette">Budget par jour</span>
+                    <span id="res-quotidien" class="valeur">180 €</span>
+                </div>
+                <div class="stat">
+                    <span class="etiquette">Remise étudiant</span>
+                    <span id="res-remise" class="valeur valeur-verte">- 100 €</span>
+                </div>
+                <div class="stat">
+                    <span class="etiquette">Budget de départ</span>
+                    <span id="res-budget" class="valeur">1 000 €</span>
+                </div>
+            </div>
+
+            <h3 class="sous-titre">Répartition des dépenses</h3>
+            <!-- Une ligne par catégorie : le JavaScript peut recréer cette liste avec une boucle -->
+            <ul id="repartition" class="repartition">
+                <li class="categorie">
+                    <span class="nom"><i class="fa-solid fa-bed"></i> Hébergement</span>
+                    <span class="barre"><span class="remplissage" style="width: 40%"></span></span>
+                    <span class="montant">360 €</span>
+                </li>
+                <li class="categorie">
+                    <span class="nom"><i class="fa-solid fa-car"></i> Transport</span>
+                    <span class="barre"><span class="remplissage" style="width: 20%"></span></span>
+                    <span class="montant">180 €</span>
+                </li>
+                <li class="categorie">
+                    <span class="nom"><i class="fa-solid fa-utensils"></i> Nourriture</span>
+                    <span class="barre"><span class="remplissage" style="width: 20%"></span></span>
+                    <span class="montant">180 €</span>
+                </li>
+                <li class="categorie">
+                    <span class="nom"><i class="fa-solid fa-ticket"></i> Activités</span>
+                    <span class="barre"><span class="remplissage" style="width: 15%"></span></span>
+                    <span class="montant">135 €</span>
+                </li>
+                <li class="categorie">
+                    <span class="nom"><i class="fa-solid fa-ellipsis"></i> Divers</span>
+                    <span class="barre"><span class="remplissage" style="width: 5%"></span></span>
+                    <span class="montant">45 €</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ===== HISTORIQUE (le JavaScript ajoute une ligne <tr> par simulation) ===== -->
+        <section id="historique" class="conteneur carte">
+            <h2 class="titre-section"><i class="fa-solid fa-clock-rotate-left"></i> Historique de vos simulations</h2>
+
+            <div class="tableau-defilant">
+                <table id="table-historique">
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Départ</th>
+                            <th>Jours</th>
+                            <th>Type</th>
+                            <th>Budget</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corps-historique">
+                        <!-- Ligne d'exemple : à supprimer quand le JavaScript remplit le tableau -->
+                        <tr>
+                            <td>Paris</td>
+                            <td>15/04/2026</td>
+                            <td>5</td>
+                            <td>Aller-retour</td>
+                            <td>1 000 €</td>
+                            <td>900 €</td>
+                            <td><button type="button" class="bouton-supprimer"><i class="fa-solid fa-trash"></i> Supprimer</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p id="historique-vide" class="vide">Aucune simulation pour le moment.</p>
+        </section>
+
+        <!-- ===== À PROPOS ===== -->
+        <section id="a-propos" class="conteneur carte">
+            <h2 class="titre-section"><i class="fa-solid fa-circle-info"></i> À propos</h2>
+            <p>TravelSim est un projet réalisé en binôme dans le cadre du cours de programmation web : HTML pour la structure, CSS pour la mise en forme et JavaScript pour les calculs.</p>
+        </section>
+
+    </main>
+
+    <!-- ===== PIED DE PAGE ===== -->
+    <footer class="pied">
+        <div class="conteneur pied-contenu">
+            <img src="assets/logo.svg" alt="TravelSim" class="pied-logo">
+            <ul class="pied-liens">
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#simulateur">Simulateur</a></li>
+                <li><a href="#historique">Historique</a></li>
+            </ul>
+            <p>© 2026 TravelSim. Projet étudiant.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
